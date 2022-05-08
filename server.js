@@ -14,12 +14,27 @@ const PORT = process.env.PORT || 3001;
 const app = express();
 
 
-// parse incoming request Object into string & array
+// Middleware: parse incoming request Object into string & array
 app.use(express.urlencoded({ extended:true }));
-// parse incoming json
+// Middelware: parse incoming json
 app.use(express.json());
-// serves static files in dir/public
+// Middleware: serves static files in dir/public
 app.use(express.static('public'));
+
+
+// absolute path directly to note.html with res.sendFile
+app.get('/notes', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/notes.html'));
+});
+// absolute path directly to index.html with res.sendFile
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+// Wildcard route absolute path directly to index.html..
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, './public/index.html'));
+});
+
 
 
 // start server and listens on port 3001
