@@ -46,6 +46,7 @@ app.get('/api/notes', (req, res) => {
     res.json(dbParse);
 });
 
+
 // POST requests submits data
 app.post('/api/notes', (req, res) => {
     // reads server, return content
@@ -61,7 +62,6 @@ app.post('/api/notes', (req, res) => {
     // JSON respond
     res.json();
 });
-
 
 
 // start server and listens on port 3001
