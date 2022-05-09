@@ -46,6 +46,21 @@ app.get('/api/notes', (req, res) => {
     res.json(dbParse);
 });
 
+// POST requests submits data
+app.post('/api/notes', (req, res) => {
+    // reads server, return content
+    const dbNotes = fs.readFileSync(path.join(__dirname, './db/db.json'));
+    // JSON parse content
+    const dbParse = JSON.parse(dbNotes);
+    // stringified-JSON-content needs ID#.  "new Date().valueOf();" generates a unique number
+    req.body.id = new Date().valueOf();
+    // pushes stringified-JSON-content, Express.js object
+    dbParse.push(req.body);
+    // writes stringified-JSON-content into server
+    fs.writeFileSync(path.join(__dirname, './db/db.json'), JSON.stringify(dbParse));
+    // JSON respond
+    res.json();
+});
 
 
 
