@@ -30,7 +30,7 @@ Open to all contributions
 Feel free to reach out GitHub or email if you have any questions
 
 ## GitHub URL
-* 
+* https://github.com/SalvadorBanuelos424/Note-Taker-Express
 
 ## Email
 * SBanuelos1234@gmail.com
