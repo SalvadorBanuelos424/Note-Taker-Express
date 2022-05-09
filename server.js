@@ -16,7 +16,7 @@ const app = express();
 
 // Middleware: parse incoming request Object into string & array
 app.use(express.urlencoded({ extended:true }));
-// Middelware: parse incoming json
+// Middleware: parse incoming json
 app.use(express.json());
 // Middleware: serves static files in dir/public
 app.use(express.static('public'));
@@ -34,6 +34,18 @@ app.get('/', (req, res) => {
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, './public/index.html'));
 });
+
+
+// GET requests fetches data
+app.get('/api/notes', (req, res) => {
+    // reads server, return content
+    const dbNotes = fs.readFileSync(path.join(__dirname, './db/db.json'));
+    // JSON parse content
+    const dbParse = JSON.parse(dbNotes);
+    // Respond JSON content
+    res.json(dbParse);
+});
+
 
 
 
